@@ -9,7 +9,7 @@ Operating Systems Project
 ## Commands:
 | Command       | Description                     |
 |:--------------|:--------------------------------|
-| make boot     | Builds bootloader               |
-| make kernel   | Builds kernel                   |
-| make image    | Creates an image                |
-| run           | Creates an image and runs Qemu  |
+| make boot     | Builds the bootloader           |
+| make kernel   | Builds the kernel               |
+| make image    | Creates the image               |
+| run           | Creates the image and runs Qemu |
