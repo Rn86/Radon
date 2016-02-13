@@ -11,5 +11,5 @@ Operating Systems Project
 |:--------------|:------------------------------------------------|
 | make boot     | Builds bootloader                               |
 | make kernel   | Builds kernel                                   |
-| make image    | Build kernel and bootloader and makes an image  |
+| make image    | Build kernel and bootloader and creates an image|
 | run           | Creates an image and runs Qemu                  |
