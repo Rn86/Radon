@@ -7,9 +7,9 @@ Operating Systems Project
 3. Download and install [Nasm](http://nasm.us/pub/nasm/releasebuilds/2.11.08/win32/nasm-2.11.08-installer.exe), make sure binaries directory path is in %PATH% environmental variable.
 
 ## Commands:
-| Command       | Description                                     |
-|:--------------|:------------------------------------------------|
-| make boot     | Builds bootloader                               |
-| make kernel   | Builds kernel                                   |
-| make image    | Build kernel and bootloader and creates an image|
-| run           | Creates an image and runs Qemu                  |
+| Command       | Description                     |
+|:--------------|:--------------------------------|
+| make boot     | Builds bootloader               |
+| make kernel   | Builds kernel                   |
+| make image    | Creates an image                |
+| run           | Creates an image and runs Qemu  |
