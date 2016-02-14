@@ -6,11 +6,3 @@ Operating Systems Project
 2. Download and install [Qemu](http://qemu.weilnetz.de/w32/qemu-w32-setup-20151216.exe), make sure binaries directory path is in %PATH% environmental variable.
 3. Download and install [Nasm](http://nasm.us/pub/nasm/releasebuilds/2.11.08/win32/nasm-2.11.08-installer.exe), make sure binaries directory path is in %PATH% environmental variable.
 4. Download and install [DD](www.chrysocome.net/downloads/93fb45fbba0ae1ec7635b45197f1f900/dd-0.5.zip), make sure binaries directory path is in %PATH% environmental variable.
-
-## Commands:
-| Command       | Description                     |
-|:--------------|:--------------------------------|
-| make boot     | Builds the bootloader           |
-| make kernel   | Builds the kernel               |
-| make image    | Creates the image               |
-| run           | Creates the image and runs Qemu |
