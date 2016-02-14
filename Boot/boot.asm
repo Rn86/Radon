@@ -1,10 +1,4 @@
 [bits 16]
-; Variables
-ERROR_MSG        db "Error!" , 0
-BOOT_DRIVE:      db 0
-
-VIDEO_MEMORY_SEG equ 0xb800
-WHITE_ON_BLACK   equ 0x0f
 
 start:
     cli
@@ -78,8 +72,8 @@ print_string_done :
     popa
     ret
 	
-%include "Boot/a20.inc"
-%include "Boot/gdt.inc"
+%include "a20.inc"
+%include "gdt.inc"
 
 [bits 32]
 kernel_begin:
@@ -100,6 +94,14 @@ kernel_end:
     jmp kernel_end
 
 [bits 16]
+
+; Variables
+ERROR_MSG        db "Error!" , 0
+BOOT_DRIVE:      db 0
+
+VIDEO_MEMORY_SEG equ 0xb800
+WHITE_ON_BLACK   equ 0x0f
+
 times 510-($-$$) db 0
 db 0x55
 db 0xAA

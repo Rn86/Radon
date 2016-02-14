@@ -1,22 +1,28 @@
 @echo off
 
-call make.bat Boot
-set Rn_BootBinDir=%Rn_ProjectBinDir%
-set Rn_BootOutName=%Rn_ProjectOutName%
+set Rn_Operation=%1
+set Rn_IntDir=%2
+set Rn_OutDir=%3
+set Rn_Output=%4
 
-call make.bat Kernel
-set Rn_KernelBinDir=%Rn_ProjectBinDir%
-set Rn_KernelOutName=%Rn_ProjectOutName%
+If /I %Rn_Operation%==-b goto Rn_Build 
+If /I %Rn_Operation%==-r goto Rn_Rebuild
+If /I %Rn_Operation%==-c goto Rn_Clean
+echo Incorrect input & goto Rn_End
 
-set Rn_ProjectName=Image
-set Rn_ProjectDir=Image
-set Rn_ProjectOutName=radon.img
-set Rn_ProjectBinDir=%Rn_BinDir%\%Rn_ProjectName%
-set Rn_ProjectObjDir=%Rn_ObjDir%\%Rn_ProjectName%
+:Rn_Build
+dd if=/dev/zero of=%Rn_OutDir%\%Rn_Output% bs=512 count=2880
+dd if=%Rn_OutDir%\boot.bin of=%Rn_OutDir%\%Rn_Output% bs=512
+dd if=%Rn_OutDir%\kernel.bin of=%Rn_OutDir%\%Rn_Output% bs=512 seek=1
+goto Rn_End
 
-if not exist %Rn_ProjectBinDir% mkdir %Rn_ProjectBinDir%
-if not exist %Rn_ProjectObjDir% mkdir %Rn_ProjectObjDir%
+:Rn_Rebuild
+goto Rn_Build
+goto Rn_End
 
-dd if=/dev/zero of=%Rn_ProjectBinDir%\%Rn_ProjectOutName% bs=512 count=2880
-dd if=%Rn_BootBinDir%\%Rn_BootOutName% of=%Rn_ProjectBinDir%\%Rn_ProjectOutName% bs=512
-dd if=%Rn_KernelBinDir%\%Rn_KernelOutName% of=%Rn_ProjectBinDir%\%Rn_ProjectOutName% bs=512 seek=1
+:Rn_Clean
+del /f /s /q %Rn_IntDir% 1>nul
+del /f /s /q %Rn_OutDir% 1>nul
+goto Rn_End
+
+:Rn_End

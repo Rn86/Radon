@@ -34,3 +34,9 @@
 # Directories
 Bin/
 Obj/
+.vs/
+
+
+# Visual studio stuff
+*.opensdf
+*.sdf
