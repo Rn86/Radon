@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7E79017E-9EE5-4E98-A365-ECAAB0C48F01}</ProjectGuid>
-    <RootNamespace>Kernel</RootNamespace>
+    <ProjectGuid>{AE8C9BD6-8D2E-4259-98FE-BADDE79B9414}</ProjectGuid>
+    <RootNamespace>LibC</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -69,9 +69,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>$(SolutionDir)make -b $(ProjectName) $(Configuration) $(Platform)</NMakeBuildCommandLine>
     <OutDir>$(ProjectDir)\Obj</OutDir>
     <IntDir>$(ProjectDir)\Obj</IntDir>
-    <NMakeBuildCommandLine>$(SolutionDir)make -b $(ProjectName) $(Configuration) $(Platform)</NMakeBuildCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -114,20 +114,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DescriptorTables.c" />
-    <ClCompile Include="Kernel.c" />
-    <ClCompile Include="Monitor.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="gdt.asm" />
-    <None Include="interupt.asm" />
     <None Include="make.bat" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DescriptorTables.h" />
-    <ClInclude Include="isr.h" />
-    <ClInclude Include="Monitor.h" />
-    <ClInclude Include="SystemCall.h" />
+    <ClInclude Include="include\stdio.h" />
+    <ClInclude Include="include\stdlib.h" />
+    <ClInclude Include="include\string.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdio\printf.c" />
+    <ClCompile Include="stdio\putchar.c" />
+    <ClCompile Include="stdio\puts.c" />
+    <ClCompile Include="stdlib\abort.c" />
+    <ClCompile Include="stdlib\abs.c" />
+    <ClCompile Include="stdlib\atoi.c" />
+    <ClCompile Include="stdlib\atol.c" />
+    <ClCompile Include="stdlib\div.c" />
+    <ClCompile Include="stdlib\labs.c" />
+    <ClCompile Include="string\memcmp.c" />
+    <ClCompile Include="string\memcpy.c" />
+    <ClCompile Include="string\memmove.c" />
+    <ClCompile Include="string\memset.c" />
+    <ClCompile Include="string\strchr.c" />
+    <ClCompile Include="string\strcmp.c" />
+    <ClCompile Include="string\strcpy.c" />
+    <ClCompile Include="string\strlen.c" />
+    <ClCompile Include="string\strspn.c" />
+    <ClCompile Include="string\strstr.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

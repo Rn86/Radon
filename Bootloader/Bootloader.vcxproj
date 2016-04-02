@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7E79017E-9EE5-4E98-A365-ECAAB0C48F01}</ProjectGuid>
-    <RootNamespace>Kernel</RootNamespace>
+    <ProjectGuid>{E4FAEBD7-6EDA-4A07-9F5B-A1C2DC5B0A8D}</ProjectGuid>
+    <RootNamespace>Bootloader</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -69,9 +69,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>$(SolutionDir)make -b $(ProjectName) $(Configuration) $(Platform)</NMakeBuildCommandLine>
     <OutDir>$(ProjectDir)\Obj</OutDir>
     <IntDir>$(ProjectDir)\Obj</IntDir>
-    <NMakeBuildCommandLine>$(SolutionDir)make -b $(ProjectName) $(Configuration) $(Platform)</NMakeBuildCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -114,20 +114,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DescriptorTables.c" />
-    <ClCompile Include="Kernel.c" />
-    <ClCompile Include="Monitor.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="gdt.asm" />
-    <None Include="interupt.asm" />
+    <None Include="boot.asm" />
     <None Include="make.bat" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DescriptorTables.h" />
-    <ClInclude Include="isr.h" />
-    <ClInclude Include="Monitor.h" />
-    <ClInclude Include="SystemCall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7E79017E-9EE5-4E98-A365-ECAAB0C48F01}</ProjectGuid>
-    <RootNamespace>Kernel</RootNamespace>
+    <ProjectGuid>{1F55AECB-532C-458C-A199-6345909E7684}</ProjectGuid>
+    <RootNamespace>RadonAPI</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -114,20 +114,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DescriptorTables.c" />
-    <ClCompile Include="Kernel.c" />
-    <ClCompile Include="Monitor.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="gdt.asm" />
-    <None Include="interupt.asm" />
     <None Include="make.bat" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DescriptorTables.h" />
-    <ClInclude Include="isr.h" />
-    <ClInclude Include="Monitor.h" />
-    <ClInclude Include="SystemCall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

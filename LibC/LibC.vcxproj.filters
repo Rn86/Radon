@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Build">
+      <UniqueIdentifier>{bc4ef7ce-1c0f-421a-b093-a40d861c70e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\string">
+      <UniqueIdentifier>{a6d78bf3-2eda-4f08-bd45-686a5c1fb8be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\stdlib">
+      <UniqueIdentifier>{2b39c470-1693-442f-93ed-79436d839dfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\stdio">
+      <UniqueIdentifier>{971d672b-5228-428e-b5b9-1d743c4b4143}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="make.bat">
+      <Filter>Build</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\stdio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stdlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="string\memcmp.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\memcpy.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\memmove.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\memset.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\strchr.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\strcmp.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\strcpy.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\strlen.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\strspn.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="string\strstr.c">
+      <Filter>Source Files\string</Filter>
+    </ClCompile>
+    <ClCompile Include="stdlib\abort.c">
+      <Filter>Source Files\stdlib</Filter>
+    </ClCompile>
+    <ClCompile Include="stdlib\abs.c">
+      <Filter>Source Files\stdlib</Filter>
+    </ClCompile>
+    <ClCompile Include="stdlib\atoi.c">
+      <Filter>Source Files\stdlib</Filter>
+    </ClCompile>
+    <ClCompile Include="stdlib\atol.c">
+      <Filter>Source Files\stdlib</Filter>
+    </ClCompile>
+    <ClCompile Include="stdlib\div.c">
+      <Filter>Source Files\stdlib</Filter>
+    </ClCompile>
+    <ClCompile Include="stdlib\labs.c">
+      <Filter>Source Files\stdlib</Filter>
+    </ClCompile>
+    <ClCompile Include="stdio\printf.c">
+      <Filter>Source Files\stdio</Filter>
+    </ClCompile>
+    <ClCompile Include="stdio\putchar.c">
+      <Filter>Source Files\stdio</Filter>
+    </ClCompile>
+    <ClCompile Include="stdio\puts.c">
+      <Filter>Source Files\stdio</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
