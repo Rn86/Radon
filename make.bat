@@ -1,3 +1,5 @@
+@echo off
+
 set Rn_Operation=%1
 set Rn_ProjectName=%2
 set Rn_Configuration=%3
@@ -22,6 +24,7 @@ setlocal EnableDelayedExpansion
 
 If /I %Rn_Operation%==-b goto Rn_Build 
 If /I %Rn_Operation%==-l goto Rn_Link
+If /I %Rn_Operation%==-r goto Rn_Run
 
 :Rn_Build
 
@@ -52,5 +55,21 @@ for %%i in %Rn_link_Libraries% do (
 i686-elf-gcc -T %Rn_SolutionDir%linker.ld %Rn_lib_Files% -o %Rn_OutDir%%Rn_ProjectName%.bin -ffreestanding -O2 -nostdlib -lgcc
 
 goto Rn_End 
+
+:Rn_Run
+
+rmdir /s /q isodir
+if not exist %Rn_OutDir%isodir\ mkdir %Rn_OutDir%isodir\
+if not exist %Rn_OutDir%isodir\boot\ mkdir %Rn_OutDir%isodir\boot\
+if not exist %Rn_OutDir%isodir\boot\grub\ mkdir %Rn_OutDir%isodir\boot\grub
+
+copy %Rn_OutDir%Radon.bin %Rn_OutDir%isodir\boot\Radon.bin
+copy %Rn_OutDir%grub.cfg %Rn_OutDir%isodir\boot\grub\grub.cfg
+
+bash grub-mkrescue --output=%Rn_OutDir%Radon.iso %Rn_OutDir%isodir
+
+qemu-system-i386 -cdrom %Rn_OutDir%Radon.iso
+
+goto Rn_End
 
 :Rn_End

@@ -20,32 +20,50 @@
     <ClCompile Include="Monitor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DescriptorTables.c">
+    <ClCompile Include="SystemCall.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InteruptServiceRoutine.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InteruptDescriptorTable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalDescriptorTable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="gdt.asm">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="interupt.asm">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="make.bat">
       <Filter>Build</Filter>
     </None>
+    <None Include="GlobalDescriptorTable.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="InteruptDescriptorTable.asm">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="InteruptServiceRoutine.asm">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="isr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SystemCall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Monitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DescriptorTables.h">
+    <ClInclude Include="Registers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InteruptDescriptorTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalDescriptorTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InteruptServiceRoutine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

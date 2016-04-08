@@ -4,7 +4,8 @@
 #include <stdint.h>
 
 void MonitorClear();
-void MonitorWrite(char * szValue);
+int32_t MonitorWrite(char * szValue);
+uint32_t MonitorWriteLength(char * szValue, uint32_t length);
 void MonitorWriteInteger(uint32_t value);
 
-#endif //!MONITOR_H
+#endif //!RN_KERNEL_MONITOR_H_INCLUDED

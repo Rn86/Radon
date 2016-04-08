@@ -148,13 +148,24 @@ void MonitorClear()
 }
 
 // Outputs a null-terminated ASCII string to the monitor.
-void MonitorWrite(char *c)
+int32_t MonitorWrite(char * szValue)
 {
-    int i = 0;
-    while (c[i])
+	int32_t i = 0;
+    while (szValue[i])
     {
-        monitor_put(c[i++]);
+        monitor_put(szValue[i++]);
     }
+	return i;
+}
+
+uint32_t MonitorWriteLength(char * szValue, uint32_t length)
+{
+	uint32_t i = 0;
+	for (i = 0; i < length; i++)
+	{
+		monitor_put(szValue[i]);
+	}
+	return i;
 }
 
 void MonitorWriteInteger(uint32_t value)
@@ -184,6 +195,6 @@ void MonitorWriteInteger(uint32_t value)
     {
         c2[i--] = c[j++];
     }
-    monitor_write(c2);
+	MonitorWrite(c2);
 
 }

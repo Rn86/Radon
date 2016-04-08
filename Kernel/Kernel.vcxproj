@@ -114,18 +114,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DescriptorTables.c" />
+    <ClCompile Include="GlobalDescriptorTable.c" />
+    <ClCompile Include="InteruptDescriptorTable.c" />
+    <ClCompile Include="InteruptServiceRoutine.c" />
     <ClCompile Include="Kernel.c" />
     <ClCompile Include="Monitor.c" />
+    <ClCompile Include="SystemCall.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="gdt.asm" />
-    <None Include="interupt.asm" />
+    <None Include="GlobalDescriptorTable.asm" />
+    <None Include="InteruptServiceRoutine.asm" />
+    <None Include="InteruptDescriptorTable.asm" />
     <None Include="make.bat" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DescriptorTables.h" />
-    <ClInclude Include="isr.h" />
+    <ClInclude Include="GlobalDescriptorTable.h" />
+    <ClInclude Include="InteruptDescriptorTable.h" />
+    <ClInclude Include="InteruptServiceRoutine.h" />
+    <ClInclude Include="Registers.h" />
     <ClInclude Include="Monitor.h" />
     <ClInclude Include="SystemCall.h" />
   </ItemGroup>

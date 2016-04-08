@@ -1,10 +1,14 @@
 set Rn_c_Sources=(^
-	DescriptorTables,^
+	GlobalDescriptorTable,^
+	InteruptDescriptorTable,^
+	InteruptServiceRoutine,^
+	SystemCall,^
 	Monitor,^
 	Kernel^
 )
 
 set Rn_asm_Sources=(^
-	gdt,^
-	interupt^
+	GlobalDescriptorTable,^
+	InteruptDescriptorTable,^
+	InteruptServiceRoutine^
 )
