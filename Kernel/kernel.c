@@ -4,11 +4,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "Monitor.h"
-#include "SystemCall.h"
-
 #include "GlobalDescriptorTable.h"
 #include "InteruptDescriptorTable.h"
+#include "Monitor.h"
+#include "SystemCall.h"
 
 int32_t KernelInitialize()
 {

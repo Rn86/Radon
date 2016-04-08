@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-extern int32_t GlobalDescriptorTableInitialize();
+int32_t GlobalDescriptorTableInitialize();
 
 #endif //!GLOBAL_DESCRIPTOR_TABLE_H_INCLUDED
