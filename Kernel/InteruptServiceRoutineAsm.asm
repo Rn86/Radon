@@ -1,6 +1,6 @@
 %macro ISR_NOERRCODE 1
   global InteruptServiceRoutine_%1
-  isr%1:
+  InteruptServiceRoutine_%1:
     cli
     push byte 0
     push byte %1
@@ -9,7 +9,7 @@
 
 %macro ISR_ERRCODE 1
   global InteruptServiceRoutine_%1
-  isr%1:
+  InteruptServiceRoutine_%1:
     cli
     push byte %1
     jmp InteruptServiceRoutineInternal

@@ -1,7 +1,7 @@
 #include "SystemCall.h"
 
 #define RN_SYSTEM_CALL_0_IMPL(name) \
-int32_t Sys##name()\
+RnKernelResult RN_KERNEL_API RnSystemCall##name()\
 {\
 	int32_t result = 0;\
 	asm volatile("movl %1, %%eax \n"\
@@ -12,7 +12,7 @@ int32_t Sys##name()\
 }
 
 #define RN_SYSTEM_CALL_1_IMPL(name, type1) \
-int32_t Sys##name(type1 arg1)\
+RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1)\
 {\
 	int32_t result = 0;\
 	asm volatile("movl %1, %%eax \n"\
@@ -24,7 +24,7 @@ int32_t Sys##name(type1 arg1)\
 }
 
 #define RN_SYSTEM_CALL_2_IMPL(name, type1, type2) \
-int32_t Sys##name(type1 arg1, type2 arg2)\
+RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1, type2 arg2)\
 {\
 	int32_t result = 0;\
 	asm volatile("movl %1, %%eax \n"\
@@ -37,7 +37,7 @@ int32_t Sys##name(type1 arg1, type2 arg2)\
 }
 
 #define RN_SYSTEM_CALL_3_IMPL(name, type1, type2, type3) \
-int32_t Sys##name(type1 arg1, type2 arg2, type3 arg3)\
+RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1, type2 arg2, type3 arg3)\
 {\
 	int32_t result = 0;\
 	asm volatile("movl %1, %%eax \n"\
@@ -52,3 +52,4 @@ int32_t Sys##name(type1 arg1, type2 arg2, type3 arg3)\
 
 RN_SYSTEM_CALL_0_IMPL(Initialize)
 RN_SYSTEM_CALL_1_IMPL(Write, char*)
+RN_SYSTEM_CALL_2_IMPL(Allocate, int32_t, void **)

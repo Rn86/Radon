@@ -9,35 +9,24 @@
 #include "Monitor.h"
 #include "SystemCall.h"
 
-int32_t KernelInitialize()
+RnKernelResult RN_KERNEL_API RnKernelInitialize()
 {
 	GlobalDescriptorTableInitialize();
 	InteruptDescriptorTableInitialize();
-	SysInitialize();
+	RnSystemCallInitialize();
 	return 0;
 }
 
-int32_t KernelMain()
-{
-	int32_t result = SysWrite("Hello, world!\n");
-	MonitorWriteInteger(result);
-
-	while (1) {}
-	return 0;
-}
-
-int32_t KernelCleanup()
+RnKernelResult RN_KERNEL_API RnKernelCleanup()
 {
 	return 0;
 }
 
+RnKernelResult RN_KERNEL_API RnKernelMain();
 
-#if defined(__cplusplus)
-extern "C" /* Use C linkage for kernel_main. */
-#endif
 void kernel_main()
 {
-	KernelInitialize();
-	KernelMain();
-	KernelCleanup();
+	RnKernelInitialize();
+	RnKernelMain();
+	RnKernelCleanup();
 }

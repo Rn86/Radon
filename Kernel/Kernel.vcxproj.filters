@@ -32,18 +32,21 @@
     <ClCompile Include="GlobalDescriptorTable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Memory.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="make.bat">
       <Filter>Build</Filter>
     </None>
-    <None Include="GlobalDescriptorTable.asm">
+    <None Include="GlobalDescriptorTableAsm.asm">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="InteruptDescriptorTable.asm">
+    <None Include="InteruptDescriptorTableAsm.asm">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="InteruptServiceRoutine.asm">
+    <None Include="InteruptServiceRoutineAsm.asm">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
@@ -64,6 +67,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InteruptServiceRoutine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kernel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

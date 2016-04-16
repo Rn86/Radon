@@ -129,7 +129,7 @@ void monitor_put(char c)
 }
 
 // Clears the screen, by copying lots of spaces to the framebuffer.
-void MonitorClear()
+void RnMonitorInitialize()
 {
     // Make an attribute byte for the default colours
     uint8_t attributeByte = (0 /*black*/ << 4) | (15 /*white*/ & 0x0F);

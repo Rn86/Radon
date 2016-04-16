@@ -116,6 +116,9 @@
   <ItemGroup>
     <None Include="make.bat" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Radon.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

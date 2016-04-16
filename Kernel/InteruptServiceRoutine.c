@@ -1,10 +1,11 @@
 #include "Registers.h"
 #include "SystemCall.h"
 #include "Monitor.h"
+#include "Memory.h"
 
 void InteruptServiceRoutine(uint32_t ds, Registers regsisters, Interupt interupt)
 {
-	int32_t result = 1;
+	RnKernelResult result = 0;
 
 	if (interupt.error)
 	{
@@ -18,16 +19,27 @@ void InteruptServiceRoutine(uint32_t ds, Registers regsisters, Interupt interupt
 	}
 	else if (interupt.interupt == 0x7F)
 	{
-		switch ((SystemCall)regsisters.eax)
+		switch ((RnSystemCall)regsisters.eax)
 		{
 		case rnscInitialize:
 		{
-			MonitorClear();
+			RnMemoryInitialize();
+			RnMonitorInitialize();
 			break;
 		}
 		case rnscWrite:
 		{
 			result = MonitorWrite((char*)regsisters.ebx);
+			break;
+		}
+		case rnscAllocate:
+		{
+			result = RnMemoryAllocate((int32_t)regsisters.ebx, (void**)regsisters.ecx);
+			break;
+		}
+		case rnscDeallocate:
+		{
+			result = RnMemoryDeallocate((void*)regsisters.ebx);
 			break;
 		}
 		default:

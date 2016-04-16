@@ -46,6 +46,18 @@ goto Rn_End
 
 :Rn_Link
 
+for %%i in %Rn_c_Sources% do (
+	i686-elf-gcc -I%Rn_ProjectDir%Include -c %Rn_ProjectDir%%%i.c -o %Rn_IntDir%%%i.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+	set Rn_obj_Files=!Rn_obj_Files! %Rn_IntDir%%%i.o
+)
+
+for %%i in %Rn_asm_Sources% do (
+	nasm -felf32 %Rn_ProjectDir%%%i.asm -o %Rn_IntDir%%%i.o
+	set Rn_obj_Files=!Rn_obj_Files! %Rn_IntDir%%%i.o
+)
+
+ar cr %Rn_OutDir%%Rn_ProjectName%.a %Rn_obj_Files%
+
 set "Rn_lib_Files="
 
 for %%i in %Rn_link_Libraries% do (
@@ -64,7 +76,7 @@ if not exist %Rn_OutDir%isodir\boot\ mkdir %Rn_OutDir%isodir\boot\
 if not exist %Rn_OutDir%isodir\boot\grub\ mkdir %Rn_OutDir%isodir\boot\grub
 
 copy %Rn_OutDir%Radon.bin %Rn_OutDir%isodir\boot\Radon.bin
-copy %Rn_OutDir%grub.cfg %Rn_OutDir%isodir\boot\grub\grub.cfg
+copy grub.cfg %Rn_OutDir%isodir\boot\grub\grub.cfg
 
 bash grub-mkrescue --output=%Rn_OutDir%Radon.iso %Rn_OutDir%isodir
 

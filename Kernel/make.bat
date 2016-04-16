@@ -4,11 +4,12 @@ set Rn_c_Sources=(^
 	InteruptServiceRoutine,^
 	SystemCall,^
 	Monitor,^
+	Memory,^
 	Kernel^
 )
 
 set Rn_asm_Sources=(^
-	GlobalDescriptorTable,^
-	InteruptDescriptorTable,^
-	InteruptServiceRoutine^
+	GlobalDescriptorTableAsm,^
+	InteruptDescriptorTableAsm,^
+	InteruptServiceRoutineAsm^
 )

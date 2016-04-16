@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-void MonitorClear();
+void RnMonitorInitialize();
 int32_t MonitorWrite(char * szValue);
 uint32_t MonitorWriteLength(char * szValue, uint32_t length);
 void MonitorWriteInteger(uint32_t value);

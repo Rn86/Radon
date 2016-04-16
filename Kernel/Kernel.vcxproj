@@ -118,22 +118,25 @@
     <ClCompile Include="InteruptDescriptorTable.c" />
     <ClCompile Include="InteruptServiceRoutine.c" />
     <ClCompile Include="Kernel.c" />
+    <ClCompile Include="Memory.c" />
     <ClCompile Include="Monitor.c" />
     <ClCompile Include="SystemCall.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GlobalDescriptorTable.asm" />
-    <None Include="InteruptServiceRoutine.asm" />
-    <None Include="InteruptDescriptorTable.asm" />
+    <None Include="GlobalDescriptorTableAsm.asm" />
+    <None Include="InteruptServiceRoutineAsm.asm" />
+    <None Include="InteruptDescriptorTableAsm.asm" />
     <None Include="make.bat" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GlobalDescriptorTable.h" />
     <ClInclude Include="InteruptDescriptorTable.h" />
     <ClInclude Include="InteruptServiceRoutine.h" />
+    <ClInclude Include="Memory.h" />
     <ClInclude Include="Registers.h" />
     <ClInclude Include="Monitor.h" />
     <ClInclude Include="SystemCall.h" />
+    <ClInclude Include="Kernel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
