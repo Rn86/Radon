@@ -1,11 +1,11 @@
 #ifndef RN_KERNEL_MONITOR_H_INCLUDED
 #define RN_KERNEL_MONITOR_H_INCLUDED
 
-#include <stdint.h>
+#include "Kernel.h"
 
-void RnMonitorInitialize();
-int32_t MonitorWrite(char * szValue);
-uint32_t MonitorWriteLength(char * szValue, uint32_t length);
-void MonitorWriteInteger(uint32_t value);
+RnKernelResult RN_KERNEL_API RnMonitorInitialize();
+RnKernelResult RN_KERNEL_API RnMonitorWrite(char * szValue);
+RnKernelResult RN_KERNEL_API RnMonitorWriteLength(char * szValue, int32_t length);
+RnKernelResult RN_KERNEL_API RnMonitorWriteInteger(uint32_t value);
 
 #endif //!RN_KERNEL_MONITOR_H_INCLUDED

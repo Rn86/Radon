@@ -3,23 +3,23 @@
 #include "Monitor.h"
 #include "Memory.h"
 
-void InteruptServiceRoutine(uint32_t ds, Registers regsisters, Interupt interupt)
+void InteruptServiceRoutine(uint32_t ds, Registers registers, Interupt interupt)
 {
 	RnKernelResult result = 0;
 
 	if (interupt.error)
 	{
-		MonitorWrite("Error interupt: ");
-		MonitorWriteInteger(interupt.interupt);
-		MonitorWrite("\n");
+		RnMonitorWrite("Error interupt: ");
+		RnMonitorWriteInteger(interupt.interupt);
+		RnMonitorWrite("\n");
 
-		MonitorWrite("Error code: ");
-		MonitorWriteInteger(interupt.error);
-		MonitorWrite("\n");
+		RnMonitorWrite("Error code: ");
+		RnMonitorWriteInteger(interupt.error);
+		RnMonitorWrite("\n");
 	}
 	else if (interupt.interupt == 0x7F)
 	{
-		switch ((RnSystemCall)regsisters.eax)
+		switch ((RnSystemCall)registers.eax)
 		{
 		case rnscInitialize:
 		{
@@ -29,36 +29,36 @@ void InteruptServiceRoutine(uint32_t ds, Registers regsisters, Interupt interupt
 		}
 		case rnscWrite:
 		{
-			result = MonitorWrite((char*)regsisters.ebx);
+			result = RnMonitorWriteLength((char*)registers.ecx, (int32_t)registers.ebx);
 			break;
 		}
 		case rnscAllocate:
 		{
-			result = RnMemoryAllocate((int32_t)regsisters.ebx, (void**)regsisters.ecx);
+			result = RnMemoryAllocate((int32_t)registers.ecx, (void**)registers.ebx);
 			break;
 		}
 		case rnscDeallocate:
 		{
-			result = RnMemoryDeallocate((void*)regsisters.ebx);
+			result = RnMemoryDeallocate((void*)registers.ecx);
 			break;
 		}
 		default:
 		{
-			MonitorWrite("eax: ");
-			MonitorWriteInteger(regsisters.eax);
-			MonitorWrite("\n");
+			RnMonitorWrite("eax: ");
+			RnMonitorWriteInteger(registers.eax);
+			RnMonitorWrite("\n");
 
-			MonitorWrite("ebx: ");
-			MonitorWriteInteger(regsisters.ebx);
-			MonitorWrite("\n");
+			RnMonitorWrite("ebx: ");
+			RnMonitorWriteInteger(registers.ebx);
+			RnMonitorWrite("\n");
 
-			MonitorWrite("ecx: ");
-			MonitorWriteInteger(regsisters.ecx);
-			MonitorWrite("\n");
+			RnMonitorWrite("ecx: ");
+			RnMonitorWriteInteger(registers.ecx);
+			RnMonitorWrite("\n");
 
-			MonitorWrite("edx: ");
-			MonitorWriteInteger(regsisters.edx);
-			MonitorWrite("\n");
+			RnMonitorWrite("edx: ");
+			RnMonitorWriteInteger(registers.edx);
+			RnMonitorWrite("\n");
 
 			break;
 		}
@@ -66,10 +66,10 @@ void InteruptServiceRoutine(uint32_t ds, Registers regsisters, Interupt interupt
 	}
 	else
 	{
-		MonitorWrite("Interupt: ");
-		MonitorWriteInteger(interupt.interupt);
-		MonitorWrite("\n");
+		RnMonitorWrite("Interupt: ");
+		RnMonitorWriteInteger(interupt.interupt);
+		RnMonitorWrite("\n");
 	}
 
-	asm volatile("movl %0, %%eax \n" :: "r" (result));
+	asm volatile("movl %0, %%eax \n" :: "r" (result) : "%eax");
 }

@@ -1,200 +1,159 @@
 #include "Monitor.h"
-#include <stdint.h>
 
 static void outb(uint16_t port, uint8_t value)
 {
 	asm volatile ("outb %1, %0" : : "dN" (port), "a" (value));
 }
 
-//static uint8_t inb(uint16_t port)
-//{
-//	uint8_t ret;
-//	asm volatile("inb %1, %0" : "=a" (ret) : "dN" (port));
-//	return ret;
-//}
-//
-//static uint16_t inw(uint16_t port)
-//{
-//	uint16_t ret;
-//	asm volatile ("inw %1, %0" : "=a" (ret) : "dN" (port));
-//	return ret;
-//}
+static uint16_t *rnMonitorVideoMemory = (uint16_t *)0xB8000;
+static uint8_t rnMonitorCursorX = 0;
+static uint8_t rnMonitorCursorY = 0;
 
-static uint16_t *video_memory = (uint16_t *)0xB8000;
-static uint8_t cursor_x = 0;
-static uint8_t cursor_y = 0;
-
-// Updates the hardware cursor.
-static void move_cursor()
+static RnKernelResult RN_KERNEL_API RnMonitorMoveCursor()
 {
-    // The screen is 80 characters wide...
-	uint16_t cursorLocation = cursor_y * 80 + cursor_x;
-    outb(0x3D4, 14);                  // Tell the VGA board we are setting the high cursor byte.
-    outb(0x3D5, cursorLocation >> 8); // Send the high cursor byte.
-    outb(0x3D4, 15);                  // Tell the VGA board we are setting the low cursor byte.
-    outb(0x3D5, cursorLocation);      // Send the low cursor byte.
+	uint16_t cursorLocation = rnMonitorCursorY * 80 + rnMonitorCursorX;
+    outb(0x3D4, 14);
+    outb(0x3D5, cursorLocation >> 8);
+    outb(0x3D4, 15);
+    outb(0x3D5, cursorLocation);
+	return 0;
 }
 
-// Scrolls the text on the screen up by one line.
-static void scroll()
+static RnKernelResult RN_KERNEL_API RnMonitorScroll()
 {
+	uint8_t attributeByte = (0 << 4) | (15 & 0x0F);
+	uint16_t blank = 0x20 | (attributeByte << 8);
 
-    // Get a space character with the default colour attributes.
-	uint8_t attributeByte = (0 /*black*/ << 4) | (15 /*white*/ & 0x0F);
-	uint16_t blank = 0x20 /* space */ | (attributeByte << 8);
-
-    // Row 25 is the end, this means we need to scroll up
-    if(cursor_y >= 25)
+    if(rnMonitorCursorY >= 25)
     {
-        // Move the current text chunk that makes up the screen
-        // back in the buffer by a line
         int i;
         for (i = 0*80; i < 24*80; i++)
         {
-            video_memory[i] = video_memory[i+80];
+			rnMonitorVideoMemory[i] = rnMonitorVideoMemory[i+80];
         }
 
-        // The last line should now be blank. Do this by writing
-        // 80 spaces to it.
         for (i = 24*80; i < 25*80; i++)
         {
-            video_memory[i] = blank;
+			rnMonitorVideoMemory[i] = blank;
         }
-        // The cursor should now be on the last line.
-        cursor_y = 24;
+
+		rnMonitorCursorY = 24;
     }
+	return 0;
 }
 
-// Writes a single character out to the screen.
-void monitor_put(char c)
+RnKernelResult RN_KERNEL_API RnMonitorPut(char c)
 {
-    // The background colour is black (0), the foreground is white (15).
     uint8_t backColour = 0;
 	uint8_t foreColour = 15;
 
-    // The attribute byte is made up of two nibbles - the lower being the 
-    // foreground colour, and the upper the background colour.
 	uint8_t  attributeByte = (backColour << 4) | (foreColour & 0x0F);
-    // The attribute byte is the top 8 bits of the word we have to send to the
-    // VGA board.
+
     uint16_t attribute = attributeByte << 8;
 	uint16_t *location;
 
-    // Handle a backspace, by moving the cursor back one space
-    if (c == 0x08 && cursor_x)
+    if (c == 0x08 && rnMonitorCursorX)
     {
-        cursor_x--;
+		rnMonitorCursorX--;
     }
 
-    // Handle a tab by increasing the cursor's X, but only to a point
-    // where it is divisible by 8.
     else if (c == 0x09)
     {
-        cursor_x = (cursor_x+8) & ~(8-1);
+		rnMonitorCursorX = (rnMonitorCursorX + 8) & ~(8-1);
     }
 
-    // Handle carriage return
     else if (c == '\r')
     {
-        cursor_x = 0;
+		rnMonitorCursorX = 0;
     }
 
-    // Handle newline by moving cursor back to left and increasing the row
     else if (c == '\n')
     {
-        cursor_x = 0;
-        cursor_y++;
+		rnMonitorCursorX = 0;
+		rnMonitorCursorY++;
     }
-    // Handle any other printable character.
+
     else if(c >= ' ')
     {
-        location = video_memory + (cursor_y*80 + cursor_x);
+        location = rnMonitorVideoMemory + (rnMonitorCursorY * 80 + rnMonitorCursorX);
         *location = c | attribute;
-        cursor_x++;
+		rnMonitorCursorX++;
     }
 
-    // Check if we need to insert a new line because we have reached the end
-    // of the screen.
-    if (cursor_x >= 80)
+    if (rnMonitorCursorX >= 80)
     {
-        cursor_x = 0;
-        cursor_y ++;
+		rnMonitorCursorX = 0;
+		rnMonitorCursorY++;
     }
 
-    // Scroll the screen if needed.
-    scroll();
-    // Move the hardware cursor.
-    move_cursor();
-
+    RnMonitorScroll();
+	RnMonitorMoveCursor();
+	return 0;
 }
 
-// Clears the screen, by copying lots of spaces to the framebuffer.
-void RnMonitorInitialize()
+RnKernelResult RN_KERNEL_API RnMonitorInitialize()
 {
-    // Make an attribute byte for the default colours
-    uint8_t attributeByte = (0 /*black*/ << 4) | (15 /*white*/ & 0x0F);
-    uint16_t blank = 0x20 /* space */ | (attributeByte << 8);
+    uint8_t attributeByte = (0 << 4) | (15 & 0x0F);
+    uint16_t blank = 0x20 | (attributeByte << 8);
 
-    int i;
+    int32_t i = 0;
     for (i = 0; i < 80*25; i++)
     {
-        video_memory[i] = blank;
+		rnMonitorVideoMemory[i] = blank;
     }
 
-    // Move the hardware cursor back to the start.
-    cursor_x = 0;
-    cursor_y = 0;
-    move_cursor();
+	rnMonitorCursorX = 0;
+	rnMonitorCursorY = 0;
+    RnMonitorMoveCursor();
+	return 0;
 }
 
-// Outputs a null-terminated ASCII string to the monitor.
-int32_t MonitorWrite(char * szValue)
+RnKernelResult RN_KERNEL_API RnMonitorWrite(char * szValue)
 {
 	int32_t i = 0;
-    while (szValue[i])
-    {
-        monitor_put(szValue[i++]);
-    }
-	return i;
+	while(szValue[i])
+	{
+		RnMonitorPut(szValue[i++]);
+	}
+	return 0;
 }
 
-uint32_t MonitorWriteLength(char * szValue, uint32_t length)
+RnKernelResult RN_KERNEL_API RnMonitorWriteLength(char * szValue, int32_t length)
 {
-	uint32_t i = 0;
+	int32_t i = 0;
 	for (i = 0; i < length; i++)
 	{
-		monitor_put(szValue[i]);
+		RnMonitorPut(szValue[i]);
 	}
-	return i;
+	return 0;
 }
 
-void MonitorWriteInteger(uint32_t value)
+RnKernelResult RN_KERNEL_API RnMonitorWriteInteger(uint32_t value)
 {
+	if (value == 0)
+	{
+		RnMonitorPut('0');
+		return 0;
+	}
 
-    if (value == 0)
-    {
-        monitor_put('0');
-        return;
-    }
+	int32_t acc = value;
+	char c[32];
+	int i = 0;
+	while (acc > 0)
+	{
+		c[i] = '0' + acc % 10;
+		acc /= 10;
+		i++;
+	}
+	c[i] = 0;
 
-    int32_t acc = value;
-    char c[32];
-    int i = 0;
-    while (acc > 0)
-    {
-        c[i] = '0' + acc%10;
-        acc /= 10;
-        i++;
-    }
-    c[i] = 0;
-
-    char c2[32];
-    c2[i--] = 0;
-    int j = 0;
-    while(i >= 0)
-    {
-        c2[i--] = c[j++];
-    }
-	MonitorWrite(c2);
-
+	char c2[32];
+	c2[i--] = 0;
+	int j = 0;
+	while (i >= 0)
+	{
+		c2[i--] = c[j++];
+	}
+	RnMonitorWrite(c2);
+	return 0;
 }

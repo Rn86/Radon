@@ -5,7 +5,8 @@
 extern "C" {
 #endif
 
-typedef struct {
+typedef struct
+{
   int quot;
   int rem;
 } div_t;

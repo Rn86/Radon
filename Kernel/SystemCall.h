@@ -3,7 +3,7 @@
 
 #include "Kernel.h"
 
-typedef enum RnSystemCall_
+typedef enum
 {
 	rnscInitialize = 0,
 	rnscWrite = 1,
@@ -17,7 +17,7 @@ typedef enum RnSystemCall_
 #define RN_SYSTEM_CALL_3(name, type1, type2, type3) RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1, type2 arg2, type3 arg3);
 
 RN_SYSTEM_CALL_0(Initialize)
-RN_SYSTEM_CALL_1(Write, char*)
+RN_SYSTEM_CALL_2(Write, char*, int32_t)
 RN_SYSTEM_CALL_2(Allocate, int32_t, void **)
 RN_SYSTEM_CALL_1(Deallocate, void *)
 
