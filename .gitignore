@@ -41,3 +41,7 @@ Obj/
 *.opensdf
 *.sdf
 *.VC.opendb
+
+# tup stuff
+projectVars.txt
+.tup

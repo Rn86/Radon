@@ -8,11 +8,26 @@ set Rn_Platform=%4
 set Rn_SolutionDir=%~dp0
 set Rn_ProjectDir=%Rn_SolutionDir%%Rn_ProjectName%\
 
+
+echo INTDIR = Obj\%Rn_Platform%\%Rn_Configuration% > %Rn_SolutionDir%projectVars.txt
+echo BINDIR = Bin\%Rn_Platform%\%Rn_Configuration% >> %Rn_SolutionDir%projectVars.txt
+
+
 set Rn_OutDir=%Rn_SolutionDir%Bin\%Rn_Platform%\%Rn_Configuration%\
-set Rn_IntDir=%Rn_SolutionDir%Obj\%Rn_Platform%\%Rn_Configuration%\%Rn_ProjectName%\
+set Rn_IntDir=%Rn_SolutionDir%Obj\%Rn_Platform%\%Rn_Configuration%\
 
 if not exist %Rn_OutDir% mkdir %Rn_OutDir%
 if not exist %Rn_IntDir% mkdir %Rn_IntDir%
+
+if not exist %Rn_IntDir%LibC			mkdir %Rn_IntDir%LibC
+if not exist %Rn_IntDir%LibC\stdio		mkdir %Rn_IntDir%LibC\stdio
+if not exist %Rn_IntDir%LibC\stdlib		mkdir %Rn_IntDir%LibC\stdlib
+if not exist %Rn_IntDir%LibC\string		mkdir %Rn_IntDir%LibC\string
+
+if not exist %Rn_IntDir%Bootloader		mkdir %Rn_IntDir%Bootloader
+if not exist %Rn_IntDir%Kernel			mkdir %Rn_IntDir%Kernel
+if not exist %Rn_IntDir%Radon			mkdir %Rn_IntDir%Radon
+if not exist %Rn_IntDir%RadonAPI		mkdir %Rn_IntDir%RadonAPI
 
 set Rn_c_Sources=()
 set Rn_asm_Sources=()
@@ -23,65 +38,31 @@ call %Rn_ProjectDir%make.bat
 setlocal EnableDelayedExpansion
 
 If /I %Rn_Operation%==-b goto Rn_Build 
-If /I %Rn_Operation%==-l goto Rn_Link
 If /I %Rn_Operation%==-r goto Rn_Run
 
 :Rn_Build
 
 set "Rn_obj_Files="
 
-for %%i in %Rn_c_Sources% do (
-	i686-elf-gcc -I%Rn_ProjectDir%Include -c %Rn_ProjectDir%%%i.c -o %Rn_IntDir%%%i.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
-	set Rn_obj_Files=!Rn_obj_Files! %Rn_IntDir%%%i.o
-)
-
-for %%i in %Rn_asm_Sources% do (
-	nasm -felf32 %Rn_ProjectDir%%%i.asm -o %Rn_IntDir%%%i.o
-	set Rn_obj_Files=!Rn_obj_Files! %Rn_IntDir%%%i.o
-)
-
-ar cr %Rn_OutDir%%Rn_ProjectName%.a %Rn_obj_Files%
-
-goto Rn_End 
-
-:Rn_Link
-
-for %%i in %Rn_c_Sources% do (
-	i686-elf-gcc -I%Rn_ProjectDir%Include -c %Rn_ProjectDir%%%i.c -o %Rn_IntDir%%%i.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
-	set Rn_obj_Files=!Rn_obj_Files! %Rn_IntDir%%%i.o
-)
-
-for %%i in %Rn_asm_Sources% do (
-	nasm -felf32 %Rn_ProjectDir%%%i.asm -o %Rn_IntDir%%%i.o
-	set Rn_obj_Files=!Rn_obj_Files! %Rn_IntDir%%%i.o
-)
-
-ar cr %Rn_OutDir%%Rn_ProjectName%.a %Rn_obj_Files%
-
-set "Rn_lib_Files="
-
-for %%i in %Rn_link_Libraries% do (
-	set Rn_lib_Files=!Rn_lib_Files! %Rn_OutDir%%%i.a
-)
-
-i686-elf-gcc -T %Rn_SolutionDir%linker.ld %Rn_lib_Files% -o %Rn_OutDir%%Rn_ProjectName%.bin -ffreestanding -O2 -nostdlib -lgcc
+	echo 'tuping Radon'
+	tup
 
 goto Rn_End 
 
 :Rn_Run
 
-rmdir /s /q isodir
-if not exist %Rn_OutDir%isodir\ mkdir %Rn_OutDir%isodir\
-if not exist %Rn_OutDir%isodir\boot\ mkdir %Rn_OutDir%isodir\boot\
-if not exist %Rn_OutDir%isodir\boot\grub\ mkdir %Rn_OutDir%isodir\boot\grub
+	rmdir /s /q isodir
+	if not exist %Rn_OutDir%isodir\ mkdir %Rn_OutDir%isodir\
+	if not exist %Rn_OutDir%isodir\boot\ mkdir %Rn_OutDir%isodir\boot\
+	if not exist %Rn_OutDir%isodir\boot\grub\ mkdir %Rn_OutDir%isodir\boot\grub
 
-copy %Rn_OutDir%Radon.bin %Rn_OutDir%isodir\boot\Radon.bin
-copy grub.cfg %Rn_OutDir%isodir\boot\grub\grub.cfg
+	copy %Rn_OutDir%Radon.bin %Rn_OutDir%isodir\boot\Radon.bin
+	copy grub.cfg %Rn_OutDir%isodir\boot\grub\grub.cfg
 
-bash grub-mkrescue --output=%Rn_OutDir%Radon.iso %Rn_OutDir%isodir
+	bash grub-mkrescue --output=%Rn_OutDir%Radon.iso %Rn_OutDir%isodir
 
-qemu-system-i386 -cdrom %Rn_OutDir%Radon.iso
+	qemu-system-i386 -cdrom %Rn_OutDir%Radon.iso
 
-goto Rn_End
+	goto Rn_End
 
 :Rn_End

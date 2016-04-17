@@ -37,9 +37,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="make.bat">
-      <Filter>Build</Filter>
-    </None>
     <None Include="GlobalDescriptorTableAsm.asm">
       <Filter>Source Files</Filter>
     </None>
@@ -48,6 +45,9 @@
     </None>
     <None Include="InteruptServiceRoutineAsm.asm">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="make.bat">
+      <Filter>Build</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

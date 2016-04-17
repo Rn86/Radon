@@ -1,0 +1,21 @@
+include_rules
+ 
+: foreach Bootloader\*.asm |> nasm -felf32 %f -o %o |> $(INTDIR)\Bootloader\%B.o
+
+: $(INTDIR)\Bootloader\*.o |> !ar |> $(BINDIR)\Bootloader.a
+
+
+ 
+: foreach Kernel\*.asm |> nasm -felf32 %f -o %o |> $(INTDIR)\Kernel\%B.o
+
+: foreach Kernel\*.c |> !cc |> $(INTDIR)\Kernel\%B.o
+
+: $(INTDIR)\Kernel\*.o |> !ar |> $(BINDIR)\Kernel.a
+
+
+
+: foreach Radon\*.c |> !cc |> $(INTDIR)\Radon\%B.o
+
+: $(INTDIR)\Radon\*.o |> !ar |> $(BINDIR)\Radon.a
+
+: $(BINDIR)\*.a |> !link |> $(BINDIR)\Radon.bin

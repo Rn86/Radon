@@ -1,0 +1,28 @@
+﻿  strcpy.c
+c:\users\daniele\desktop\radon\libc\string\strcpy.c(3): error C2146: syntax error: missing ')' before identifier 'dstptr'
+c:\users\daniele\desktop\radon\libc\string\strcpy.c(3): error C2061: syntax error: identifier 'dstptr'
+c:\users\daniele\desktop\radon\libc\string\strcpy.c(3): error C2059: syntax error: ';'
+c:\users\daniele\desktop\radon\libc\string\strcpy.c(3): error C2059: syntax error: ','
+c:\users\daniele\desktop\radon\libc\string\strcpy.c(3): error C2059: syntax error: ')'
+  memcpy.c
+c:\users\daniele\desktop\radon\libc\string\memcpy.c(3): error C2146: syntax error: missing ')' before identifier 'dstptr'
+c:\users\daniele\desktop\radon\libc\string\memcpy.c(3): error C2061: syntax error: identifier 'dstptr'
+c:\users\daniele\desktop\radon\libc\string\memcpy.c(3): error C2059: syntax error: ';'
+c:\users\daniele\desktop\radon\libc\string\memcpy.c(3): error C2059: syntax error: ','
+c:\users\daniele\desktop\radon\libc\string\memcpy.c(3): error C2059: syntax error: ')'
+  abs.c
+  abort.c
+c:\users\daniele\desktop\radon\libc\stdlib\abort.c(4): error C2143: syntax error: missing ')' before '('
+c:\users\daniele\desktop\radon\libc\stdlib\abort.c(4): error C2059: syntax error: ')'
+c:\users\daniele\desktop\radon\libc\stdlib\abort.c(5): error C2143: syntax error: missing ')' before 'type'
+c:\users\daniele\desktop\radon\libc\stdlib\abort.c(5): error C2091: function returns function
+c:\users\daniele\desktop\radon\libc\stdlib\abort.c(6): error C2082: redefinition of formal parameter 'abort'
+c:\users\daniele\desktop\radon\libc\stdlib\abort.c(6): error C2143: syntax error: missing ';' before '{'
+c:\users\daniele\desktop\radon\libc\stdlib\abort.c(10): warning C4013: '__builtin_unreachable' undefined; assuming extern returning int
+  printf.c
+c:\users\daniele\desktop\radon\libc\stdio\printf.c(12): error C2146: syntax error: missing ')' before identifier 'format'
+c:\users\daniele\desktop\radon\libc\stdio\printf.c(12): error C2061: syntax error: identifier 'format'
+c:\users\daniele\desktop\radon\libc\stdio\printf.c(12): error C2059: syntax error: ';'
+c:\users\daniele\desktop\radon\libc\stdio\printf.c(12): error C2059: syntax error: ','
+c:\users\daniele\desktop\radon\libc\stdio\printf.c(12): error C2059: syntax error: ')'
+  Generating Code...

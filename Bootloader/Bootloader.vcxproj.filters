@@ -14,11 +14,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="make.bat">
-      <Filter>Build</Filter>
-    </None>
     <None Include="boot.asm">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="make.bat">
+      <Filter>Build</Filter>
     </None>
   </ItemGroup>
 </Project>

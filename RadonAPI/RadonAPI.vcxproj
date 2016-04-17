@@ -71,7 +71,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)\Obj</OutDir>
     <IntDir>$(ProjectDir)\Obj</IntDir>
-    <NMakeBuildCommandLine>$(SolutionDir)make -b $(ProjectName) $(Configuration) $(Platform)</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>
+    </NMakeBuildCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

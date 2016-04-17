@@ -1,0 +1,7 @@
+include_rules
+
+: foreach stdio\*.c |> $(CC) -c %f -o %o $(CFLAGS) |> $(INTDIR)\%B.o
+: foreach stdlib\*.c |> $(CC) -c %f -o %o $(CFLAGS) |> $(INTDIR)\%B.o
+: foreach string\*.c |> $(CC) -c %f -o %o $(CFLAGS) |> $(INTDIR)\%B.o
+
+: $(INTDIR)\*.o |> !ar |> ../$(BINDIR)\LibC.a

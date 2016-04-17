@@ -1,0 +1,20 @@
+include projectVars.txt
+
+#CFLAGS += --sysroot=/home/Radon/sysroot -isystem=/usr/include
+
+CFLAGS += -O2
+CFLAGS += -g
+
+CC = i686-elf-gcc
+AR = i686-elf-ar
+
+CFLAGS += -Wall
+CFLAGS += -Wextra
+CFLAGS += -w
+CFLAGS += -std=gnu11
+CFLAGS += -ffreestanding
+CFLAGS += -fbuiltin
+
+!cc = 	|> $(CC) -c %f -o %o $(CFLAGS) |> %B.o
+!ar = 	|> $(AR) cr %o %f |>
+!link = |> $(CC) -T linker.ld %f -o %o -ffreestanding -O2 -nostdlib -lgcc |>
