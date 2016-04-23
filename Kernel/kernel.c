@@ -14,6 +14,7 @@ RnKernelResult RN_KERNEL_API RnKernelInitialize()
 	GlobalDescriptorTableInitialize();
 	InteruptDescriptorTableInitialize();
 	RnSystemCallInitialize();
+
 	return 0;
 }
 

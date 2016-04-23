@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Radon">
+		<Project filename="Bootloader/Bootloader.cbp" />
+		<Project filename="Kernel/Kernel.cbp">
+			<Depends filename="Bootloader/Bootloader.cbp" />
+			<Depends filename="Radon/Radon.cbp" />
+		</Project>
+		<Project filename="Radon/Radon.cbp" />
+		<Project filename="LibC/LibC.cbp">
+			<Depends filename="Kernel/Kernel.cbp" />
+		</Project>
+		<Project filename="RadonAPI/RadonAPI.cbp">
+			<Depends filename="LibC/LibC.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>

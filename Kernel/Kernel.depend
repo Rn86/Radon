@@ -1,0 +1,61 @@
+# depslib dependency file v1.0
+1460734181 source:c:\rn86\workspace\codeblocks\radon\kernel\globaldescriptortable.c
+	"GlobalDescriptorTable.h"
+
+1460077782 c:\rn86\workspace\codeblocks\radon\kernel\globaldescriptortable.h
+	<stdint.h>
+
+1460075597 source:c:\rn86\workspace\codeblocks\radon\kernel\globaldescriptortableasm.asm
+
+1460734310 source:c:\rn86\workspace\codeblocks\radon\kernel\interuptdescriptortable.c
+	"InteruptDescriptorTable.h"
+	"InteruptServiceRoutine.h"
+
+1460077791 c:\rn86\workspace\codeblocks\radon\kernel\interuptdescriptortable.h
+	<stdint.h>
+
+1461195357 c:\rn86\workspace\codeblocks\radon\kernel\interuptserviceroutine.h
+
+1460075484 source:c:\rn86\workspace\codeblocks\radon\kernel\interuptdescriptortableasm.asm
+
+1460921225 source:c:\rn86\workspace\codeblocks\radon\kernel\interuptserviceroutine.c
+	"Registers.h"
+	"SystemCall.h"
+	"Monitor.h"
+	"Memory.h"
+
+1460076643 c:\rn86\workspace\codeblocks\radon\kernel\registers.h
+	<stdint.h>
+
+1460828892 c:\rn86\workspace\codeblocks\radon\kernel\systemcall.h
+	"Kernel.h"
+
+1460824443 c:\rn86\workspace\codeblocks\radon\kernel\kernel.h
+	<stdint.h>
+
+1460822680 c:\rn86\workspace\codeblocks\radon\kernel\monitor.h
+	"Kernel.h"
+
+1460830553 c:\rn86\workspace\codeblocks\radon\kernel\memory.h
+	"Kernel.h"
+
+1461195360 source:c:\rn86\workspace\codeblocks\radon\kernel\interuptserviceroutineasm.asm
+
+1461374377 source:c:\rn86\workspace\codeblocks\radon\kernel\kernel.c
+	<stdbool.h>
+	<stddef.h>
+	<stdint.h>
+	"GlobalDescriptorTable.h"
+	"InteruptDescriptorTable.h"
+	"Monitor.h"
+	"SystemCall.h"
+
+1460830561 source:c:\rn86\workspace\codeblocks\radon\kernel\memory.c
+	"Memory.h"
+
+1460828236 source:c:\rn86\workspace\codeblocks\radon\kernel\monitor.c
+	"Monitor.h"
+
+1460828884 source:c:\rn86\workspace\codeblocks\radon\kernel\systemcall.c
+	"SystemCall.h"
+

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Kernel" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option extended_obj_names="1" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../bin/Debug/libKernel.so" prefix_auto="1" extension_auto="0" />
+				<Option working_dir="../bin/Debug" />
+				<Option object_output="../obj/Debug/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-T linker.ld" />
+					<Add library="libBootloader.a" />
+					<Add library="libRadon.a" />
+					<Add directory="C:/Rn86/WorkSpace/CodeBlocks/Radon/Bin/Debug" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="../bin/Release/libKernel" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/Release/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="GlobalDescriptorTable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="GlobalDescriptorTable.h" />
+		<Unit filename="GlobalDescriptorTableAsm.asm" />
+		<Unit filename="InteruptDescriptorTable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="InteruptDescriptorTable.h" />
+		<Unit filename="InteruptDescriptorTableAsm.asm" />
+		<Unit filename="InteruptServiceRoutine.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="InteruptServiceRoutine.h" />
+		<Unit filename="InteruptServiceRoutineAsm.asm" />
+		<Unit filename="Kernel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Kernel.h" />
+		<Unit filename="Memory.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Memory.h" />
+		<Unit filename="Monitor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Monitor.h" />
+		<Unit filename="Registers.h" />
+		<Unit filename="SystemCall.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SystemCall.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
