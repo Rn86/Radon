@@ -10,7 +10,8 @@ typedef struct RnString_
 RnResult RN_API RnStringCreate(char * szValue, HRnString * phString)
 {
     RnUInt32 length = 0;
-    while(*szValue)
+    if (!szValue) return -1;
+    while(szValue[length])
         length++;
     return RnStringCreateLength(szValue, length, phString);
 }
