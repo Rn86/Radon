@@ -1,4 +1,4 @@
-#include "Memory.h"
+#include <Memory.h>
 
 #define RN_KERNEL_MEMORY_POOL_SIZE 1000000
 

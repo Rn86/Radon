@@ -1,4 +1,4 @@
-#include "GlobalDescriptorTable.h"
+#include <GlobalDescriptorTable.h>
 
 struct GdtEntry_
 {

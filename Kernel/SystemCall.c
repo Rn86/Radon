@@ -1,4 +1,5 @@
-#include "SystemCall.h"
+#include <SystemCall.h>
+#include <RnKernel.h>
 
 #define RN_SYSTEM_CALL_0_IMPL(name) \
 RnKernelResult RN_KERNEL_API RnSystemCall##name()\

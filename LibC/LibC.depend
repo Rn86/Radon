@@ -1,1 +1,77 @@
 # depslib dependency file v1.0
+1459301923 source:c:\users\drado\desktop\rn86\radon\libc\stdio\printf.c
+	<stdbool.h>
+	<stdarg.h>
+	<stdio.h>
+	<string.h>
+
+1459285115 c:\users\drado\desktop\rn86\radon\libc\include\stdio.h
+
+1459285092 c:\users\drado\desktop\rn86\radon\libc\include\string.h
+	<stddef.h>
+
+1461515846 source:c:\users\drado\desktop\rn86\radon\libc\stdio\putchar.c
+	<stdio.h>
+	<RnSystemCall.h>
+
+1461516609 c:\users\drado\desktop\rn86\radon\kernel\include\rnsystemcall.h
+	<RnKernel.h>
+
+1461515972 c:\users\drado\desktop\rn86\radon\kernel\include\rnkernel.h
+	<stdint.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\stdio\puts.c
+	<stdio.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\stdlib\abort.c
+	<stdio.h>
+	<stdlib.h>
+
+1461515195 c:\users\drado\desktop\rn86\radon\libc\include\stdlib.h
+
+1460828503 source:c:\users\drado\desktop\rn86\radon\libc\stdlib\abs.c
+	<stdlib.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\stdlib\atoi.c
+	<stdlib.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\stdlib\atol.c
+	<stdlib.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\stdlib\div.c
+	<stdlib.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\stdlib\labs.c
+	<stdlib.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\memcmp.c
+	<string.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\memcpy.c
+	<string.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\memmove.c
+	<string.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\memset.c
+	<string.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\strchr.c
+	<string.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\strcmp.c
+	<string.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\strcpy.c
+	<string.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\strlen.c
+	<string.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\strspn.c
+	<stdlib.h>
+	<string.h>
+
+1458164029 source:c:\users\drado\desktop\rn86\radon\libc\string\strstr.c
+	<string.h>
+

@@ -1,5 +1,5 @@
-#include "InteruptDescriptorTable.h"
-#include "InteruptServiceRoutine.h"
+#include <InteruptDescriptorTable.h>
+#include <InteruptServiceRoutine.h>
 
 struct IdtEntry_
 {
@@ -35,8 +35,6 @@ static void* memset(void* bufptr, int value, uint32_t size)
 		buf[i] = (unsigned char)value;
 	return bufptr;
 }
-
-#define RN_ISR_HANDLE(nr) InteruptServiceRoutine_##nr
 
 int32_t InteruptDescriptorTableInitialize()
 {

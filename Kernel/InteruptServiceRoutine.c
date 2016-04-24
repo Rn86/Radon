@@ -1,7 +1,7 @@
-#include "Registers.h"
-#include "SystemCall.h"
-#include "Monitor.h"
-#include "Memory.h"
+#include <SystemCall.h>
+#include <Registers.h>
+#include <Monitor.h>
+#include <Memory.h>
 
 #define PIT_CHANNEL0      0x40  //PIT Channel 0's Data Register Port
 #define PIT_CHANNEL1      0x41  //PIT Channels 1's Data Register Port, we wont be using this here

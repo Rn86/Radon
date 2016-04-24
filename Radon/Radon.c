@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include "../Kernel/SystemCall.h"
+#include <RnSystemCall.h>
 
 RnKernelResult RN_KERNEL_API RnKernelMain()
 {

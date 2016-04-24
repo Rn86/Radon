@@ -1,7 +1,7 @@
 #ifndef RN_KERNEL_MONITOR_H_INCLUDED
 #define RN_KERNEL_MONITOR_H_INCLUDED
 
-#include "Kernel.h"
+#include <RnKernel.h>
 
 RnKernelResult RN_KERNEL_API RnMonitorInitialize();
 RnKernelResult RN_KERNEL_API RnMonitorWrite(char * szValue);

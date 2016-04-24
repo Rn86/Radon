@@ -4,10 +4,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#include "GlobalDescriptorTable.h"
-#include "InteruptDescriptorTable.h"
-#include "Monitor.h"
-#include "SystemCall.h"
+#include <GlobalDescriptorTable.h>
+#include <InteruptDescriptorTable.h>
+#include <Monitor.h>
+#include <RnSystemCall.h>
 
 RnKernelResult RN_KERNEL_API RnKernelInitialize()
 {
