@@ -8,15 +8,15 @@ extern "C" {
 #endif
 
 int memcmp(const void*, const void*, size_t);
-void* memcpy(void* __restrict, const void* __restrict, size_t);
-void* memmove(void*, const void*, size_t);
-void* memset(void*, int, size_t);
+void * memcpy(void *dest, const void *src, size_t n);
+void * memmove(void*, const void*, size_t);
+void * memset(void *s, int c, size_t n);
 size_t strlen(const char*);
-void* strcpy(void* __restrict, const void* __restrict);
-char *strchr(const char *str, int c);
+char * strcpy(char *dest, const char *src);
+char * strchr(const char *str, int c);
 int strcmp(const char* s1, const char* s2);
-size_t strspn(const char *str1, const char *str2);
-char *strstr(const char *haystack, const char *needle);
+size_t strspn(const char *s1, const char *s2);
+char * strstr(const char *s1, const char *s2);
 
 #ifdef __cplusplus
 }

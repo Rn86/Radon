@@ -1,18 +1,18 @@
 %macro ISR_NOERRCODE 1
-  global InteruptServiceRoutine_%1
-  InteruptServiceRoutine_%1:
-    cli
-    push byte 0
-    push byte %1
-    jmp InteruptServiceRoutineInternal
+    global RnInteruptServiceRoutine_%1
+    RnInteruptServiceRoutine_%1:
+        cli
+        push byte 0
+        push byte %1
+        jmp RnInteruptServiceRoutineInternal
 %endmacro
 
 %macro ISR_ERRCODE 1
-  global InteruptServiceRoutine_%1
-  InteruptServiceRoutine_%1:
-    cli
-    push byte %1
-    jmp InteruptServiceRoutineInternal
+    global RnInteruptServiceRoutine_%1
+    RnInteruptServiceRoutine_%1:
+        cli
+        push byte %1
+        jmp RnInteruptServiceRoutineInternal
 %endmacro
 
 ISR_NOERRCODE 0
@@ -50,8 +50,8 @@ ISR_NOERRCODE 31
 
 ISR_NOERRCODE 127	; system call
 
-InteruptServiceRoutineInternal:
-	
+RnInteruptServiceRoutineInternal:
+
 	push eax
 	push ecx
 	push edx
@@ -60,7 +60,7 @@ InteruptServiceRoutineInternal:
 	push ebp
 	push esi
 	push edi
-	
+
 	mov ax, ds
     push eax
 
@@ -70,8 +70,8 @@ InteruptServiceRoutineInternal:
     mov fs, ax
     mov gs, ax
 
-	extern InteruptServiceRoutine
-    call InteruptServiceRoutine
+	extern RnInteruptServiceRoutine
+    call RnInteruptServiceRoutine
 
 	pop ebx
     mov ds, bx

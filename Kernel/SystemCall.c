@@ -2,9 +2,9 @@
 #include <RnKernel.h>
 
 #define RN_SYSTEM_CALL_0_IMPL(name) \
-RnKernelResult RN_KERNEL_API RnSystemCall##name()\
+RnResult RN_API RnSystemCall##name()\
 {\
-	RnKernelResult result = 0;\
+	RnResult result = 0;\
 	asm volatile(\
 		"pusha            \n"\
 		"movl %1, %%eax   \n"\
@@ -19,9 +19,9 @@ RnKernelResult RN_KERNEL_API RnSystemCall##name()\
 }
 
 #define RN_SYSTEM_CALL_1_IMPL(name, type1) \
-RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1)\
+RnResult RN_API RnSystemCall##name(type1 arg1)\
 {\
-	RnKernelResult result = 0;\
+	RnResult result = 0;\
 	asm volatile(\
 		"pusha            \n"\
 		"movl %1, %%eax   \n"\
@@ -36,9 +36,9 @@ RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1)\
 }
 
 #define RN_SYSTEM_CALL_2_IMPL(name, type1, type2) \
-RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1, type2 arg2)\
+RnResult RN_API RnSystemCall##name(type1 arg1, type2 arg2)\
 {\
-	RnKernelResult result = 0;\
+	RnResult result = 0;\
 	asm volatile(\
 		"pusha            \n"\
 		"movl %1, %%eax   \n"\
@@ -53,9 +53,9 @@ RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1, type2 arg2)\
 }
 
 #define RN_SYSTEM_CALL_3_IMPL(name, type1, type2, type3) \
-RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1, type2 arg2, type3 arg3)\
+RnResult RN_API RnSystemCall##name(type1 arg1, type2 arg2, type3 arg3)\
 {\
-	RnKernelResult result = 0;\
+	RnResult result = 0;\
 	asm volatile(\
 		"pusha            \n"\
 		"movl %1, %%eax   \n"\
@@ -71,5 +71,4 @@ RnKernelResult RN_KERNEL_API RnSystemCall##name(type1 arg1, type2 arg2, type3 ar
 
 RN_SYSTEM_CALL_0_IMPL(Initialize)
 RN_SYSTEM_CALL_2_IMPL(Write, char*, int32_t)
-RN_SYSTEM_CALL_2_IMPL(Allocate, int32_t, void **)
-RN_SYSTEM_CALL_1_IMPL(Deallocate, void*)
+RN_SYSTEM_CALL_2_IMPL(Read, char*, int32_t*)

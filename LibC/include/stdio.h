@@ -9,6 +9,8 @@ int printf(const char* __restrict, ...);
 int putchar(int);
 int puts(const char*);
 
+char * gets(char * str);
+
 #ifdef __cplusplus
 }
 #endif

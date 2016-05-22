@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1462144195 source:c:\users\drado\desktop\rn86\radon\rncore\radon\collection\rnlist.c
+	<Radon/Collection/RnList.h>
+	<stdlib.h>
+
+1462143634 c:\users\drado\desktop\rn86\radon\rncore\include\radon\collection\rnlist.h
+	<Radon/RnTypes.h>
+
+1462144152 c:\users\drado\desktop\rn86\radon\rncore\include\radon\rntypes.h
+	<stdint.h>
+	<stdbool.h>
+
+1461515195 c:\users\drado\desktop\rn86\radon\libc\include\stdlib.h
+

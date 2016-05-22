@@ -1,6 +1,6 @@
-[GLOBAL GlobalDescriptorTableFlush]
+[GLOBAL RnGlobalDescriptorTableFlush]
 
-GlobalDescriptorTableFlush:
+RnGlobalDescriptorTableFlush:
     mov eax, [esp+4]
     lgdt [eax]
 

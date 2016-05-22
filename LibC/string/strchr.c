@@ -3,7 +3,7 @@
 char *strchr(const char *str, int c)
 {
     char *ptr;
-    ptr = str;
+    ptr = (char*)str;
     while(*ptr != c)
     {
         ptr++;

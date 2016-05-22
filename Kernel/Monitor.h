@@ -3,9 +3,10 @@
 
 #include <RnKernel.h>
 
-RnKernelResult RN_KERNEL_API RnMonitorInitialize();
-RnKernelResult RN_KERNEL_API RnMonitorWrite(char * szValue);
-RnKernelResult RN_KERNEL_API RnMonitorWriteLength(char * szValue, int32_t length);
-RnKernelResult RN_KERNEL_API RnMonitorWriteInteger(uint32_t value);
+RnResult RN_API RnMonitorInitialize();
+RnResult RN_API RnMonitorPut(char c);
+RnResult RN_API RnMonitorWrite(char * szValue);
+RnResult RN_API RnMonitorWriteLength(char * szValue, int32_t length);
+RnResult RN_API RnMonitorWriteInteger(uint32_t value);
 
 #endif //!RN_KERNEL_MONITOR_H_INCLUDED

@@ -1,6 +1,0 @@
-#ifndef RN_BOOTLOADER_H_INCLUDED
-#define RN_BOOTLOADER_H_INCLUDED
-
-extern void _start();
-
-#endif // RN_BOOTLOADER_H_INCLUDED

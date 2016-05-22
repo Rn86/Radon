@@ -5,8 +5,7 @@ typedef enum
 {
     rnscInitialize = 0,
     rnscWrite = 1,
-    rnscAllocate = 2,
-    rnscDeallocate = 3,
+    rnscRead = 2,
 } RnSystemCall;
 
 #endif //!RN_SYSTEM_CALL_INCLUDED_H

@@ -1,25 +1,21 @@
 #include <Monitor.h>
-
-static void outb(uint16_t port, uint8_t value)
-{
-	asm volatile ("outb %1, %0" : : "dN" (port), "a" (value));
-}
+#include <Assembly.h>
 
 static uint16_t *rnMonitorVideoMemory = (uint16_t *)0xB8000;
 static uint8_t rnMonitorCursorX = 0;
 static uint8_t rnMonitorCursorY = 0;
 
-static RnKernelResult RN_KERNEL_API RnMonitorMoveCursor()
+static RnResult RN_API RnMonitorMoveCursor()
 {
 	uint16_t cursorLocation = rnMonitorCursorY * 80 + rnMonitorCursorX;
-    outb(0x3D4, 14);
-    outb(0x3D5, cursorLocation >> 8);
-    outb(0x3D4, 15);
-    outb(0x3D5, cursorLocation);
+    RnAssemblyOUTB(0x3D4, 14);
+    RnAssemblyOUTB(0x3D5, cursorLocation >> 8);
+    RnAssemblyOUTB(0x3D4, 15);
+    RnAssemblyOUTB(0x3D5, cursorLocation);
 	return 0;
 }
 
-static RnKernelResult RN_KERNEL_API RnMonitorScroll()
+static RnResult RN_API RnMonitorScroll()
 {
 	uint8_t attributeByte = (0 << 4) | (15 & 0x0F);
 	uint16_t blank = 0x20 | (attributeByte << 8);
@@ -42,7 +38,7 @@ static RnKernelResult RN_KERNEL_API RnMonitorScroll()
 	return 0;
 }
 
-RnKernelResult RN_KERNEL_API RnMonitorPut(char c)
+RnResult RN_API RnMonitorPut(char c)
 {
     uint8_t backColour = 0;
 	uint8_t foreColour = 15;
@@ -91,7 +87,7 @@ RnKernelResult RN_KERNEL_API RnMonitorPut(char c)
 	return 0;
 }
 
-RnKernelResult RN_KERNEL_API RnMonitorInitialize()
+RnResult RN_API RnMonitorInitialize()
 {
     uint8_t attributeByte = (0 << 4) | (15 & 0x0F);
     uint16_t blank = 0x20 | (attributeByte << 8);
@@ -108,7 +104,7 @@ RnKernelResult RN_KERNEL_API RnMonitorInitialize()
 	return 0;
 }
 
-RnKernelResult RN_KERNEL_API RnMonitorWrite(char * szValue)
+RnResult RN_API RnMonitorWrite(char * szValue)
 {
 	int32_t i = 0;
 	while(szValue[i])
@@ -118,7 +114,7 @@ RnKernelResult RN_KERNEL_API RnMonitorWrite(char * szValue)
 	return 0;
 }
 
-RnKernelResult RN_KERNEL_API RnMonitorWriteLength(char * szValue, int32_t length)
+RnResult RN_API RnMonitorWriteLength(char * szValue, int32_t length)
 {
 	int32_t i = 0;
 	for (i = 0; i < length; i++)
@@ -128,7 +124,7 @@ RnKernelResult RN_KERNEL_API RnMonitorWriteLength(char * szValue, int32_t length
 	return 0;
 }
 
-RnKernelResult RN_KERNEL_API RnMonitorWriteInteger(uint32_t value)
+RnResult RN_API RnMonitorWriteInteger(uint32_t value)
 {
 	if (value == 0)
 	{

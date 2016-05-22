@@ -2,15 +2,21 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Radon">
 		<Project filename="Bootloader/Bootloader.cbp" />
-		<Project filename="Kernel/Kernel.cbp">
+		<Project filename="Kernel/Kernel.cbp" />
+		<Project filename="Radon/Radon.cbp">
 			<Depends filename="Bootloader/Bootloader.cbp" />
-			<Depends filename="Radon/Radon.cbp" />
+			<Depends filename="Kernel/Kernel.cbp" />
+			<Depends filename="LibC/LibC.cbp" />
 		</Project>
-		<Project filename="Radon/Radon.cbp" />
 		<Project filename="LibC/LibC.cbp">
 			<Depends filename="Kernel/Kernel.cbp" />
 		</Project>
-		<Project filename="RadonAPI/RadonAPI.cbp">
+		<Project filename="RnCore/RnCore.cbp">
+			<Depends filename="LibC/LibC.cbp" />
+		</Project>
+		<Project filename="Radon.Test/Radon.Test.cbp">
+			<Depends filename="Bootloader/Bootloader.cbp" />
+			<Depends filename="Kernel/Kernel.cbp" />
 			<Depends filename="LibC/LibC.cbp" />
 		</Project>
 	</Workspace>

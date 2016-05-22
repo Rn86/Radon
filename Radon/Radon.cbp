@@ -7,10 +7,10 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../bin/Debug/Radon.a" prefix_auto="1" extension_auto="0" />
-				<Option working_dir="" />
+				<Option output="../bin/Debug/libRadon.so" prefix_auto="1" extension_auto="0" />
+				<Option working_dir="../bin/Debug" />
 				<Option object_output="../obj/Debug/" />
-				<Option type="2" />
+				<Option type="3" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-Wall" />
@@ -33,6 +33,16 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Compiler>
+			<Add directory="../Kernel/include" />
+			<Add directory="../LibC/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-T linker.ld" />
+			<Add library="../bin/Debug/libBootloader.a" />
+			<Add library="../bin/Debug/libC.a" />
+			<Add library="../bin/Debug/libKernel.a" />
+		</Linker>
 		<Unit filename="Radon.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -1,32 +1,10 @@
 #include <string.h>
 
-char *strstr(const char *haystack, const char *needle)
+char * strstr(const char *s1, const char *s2)
 {
-    char *ptr1;
-    char *ptr2;
-    ptr1 = haystack;
-    ptr2 = needle;
-
-    int counter = 0;
-    int n_length = strlen(needle);
-
-    while(*ptr1 != 0)
-    {
-        if(*ptr1 == *ptr2)
-        {
-            counter++;
-            if(counter == n_length)
-            {
-                return ptr1-n_length+1;
-            }
-            ptr2++;
-        }
-        else
-        {
-            counter = 0;
-            ptr2 = needle;
-        }
-        ptr1++;
-    }
-    return NULL;
+    size_t n = strlen(s2);
+    while(*s1)
+        if(!memcmp(s1++,s2,n))
+            return (char*)(s1-1);
+    return 0;
 }

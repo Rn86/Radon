@@ -1,39 +1,103 @@
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+
 #include <Memory.h>
 
-#define RN_KERNEL_MEMORY_POOL_SIZE 1000000
+#define MAX_PAGE_ALIGNED_ALLOCS 32
 
-static int8_t  rnMemoryPool[RN_KERNEL_MEMORY_POOL_SIZE];
-static int32_t rnMemoryPoolPointer;
-
-RnKernelResult RN_KERNEL_API RnMemoryInitialize()
+typedef struct
 {
-	int32_t i = 0;
-	for (; i < RN_KERNEL_MEMORY_POOL_SIZE; i++)
-	{
-		rnMemoryPool[i] = 0;
-	}
-	rnMemoryPoolPointer = 0;
+	uint8_t status;
+	uint32_t size;
+} alloc_t;
+
+void *memset(void *s, int c, size_t n)
+{
+    unsigned char* p=s;
+    while(n--)
+        *p++ = (unsigned char)c;
+    return s;
+}
+
+uint32_t rnLastAlloc = 0;
+uint32_t rnHeapEnd = 0;
+uint32_t rnHeapBegin = 0;
+uint32_t rnMemoryUsed = 0;
+
+RnResult RN_API RnMemoryInitialzie(uint32_t kernel_end)
+{
+	rnLastAlloc = kernel_end + 0x1000;
+	rnHeapBegin = rnLastAlloc;
+	rnHeapEnd = 0x400000 - (MAX_PAGE_ALIGNED_ALLOCS * 4096);
+
 	return 0;
 }
 
-RnKernelResult RN_KERNEL_API RnMemoryAllocate(int32_t size, void ** ppBlock)
+void free(void *mem)
 {
-	if (ppBlock)
+	alloc_t *alloc = (mem - sizeof(alloc_t));
+	rnMemoryUsed -= alloc->size + sizeof(alloc_t);
+	alloc->status = 0;
+}
+
+void * malloc(size_t size)
+{
+	if(!size) return 0;
+
+	/* Loop through blocks and find a block sized the same or bigger */
+	uint8_t *mem = (uint8_t *)rnHeapBegin;
+	while((uint32_t)mem < rnLastAlloc)
 	{
-		void * pBlock = 0;
-		if (size > 0 && rnMemoryPoolPointer + size + sizeof(int32_t) < RN_KERNEL_MEMORY_POOL_SIZE)
-		{
-			rnMemoryPoolPointer += size;
-			*(int32_t*)&rnMemoryPool[rnMemoryPoolPointer] = size;
-			rnMemoryPoolPointer += sizeof(int32_t);
-			pBlock = &rnMemoryPool[rnMemoryPoolPointer];
+		alloc_t *a = (alloc_t *)mem;
+		/* If the alloc has no size, we have reaced the end of allocation */
+		//mprint("mem=0x%x a={.status=%d, .size=%d}\n", mem, a->status, a->size);
+		if(!a->size)
+			goto nalloc;
+		/* If the alloc has a status of 1 (allocated), then add its size
+		 * and the sizeof alloc_t to the memory and continue looking.
+		 */
+		if(a->status) {
+			mem += a->size;
+			mem += sizeof(alloc_t);
+			mem += 4;
+			continue;
 		}
-		*ppBlock = pBlock;
-	}
-	return 0;
-}
+		/* If the is not allocated, and its size is bigger or equal to the
+		 * requested size, then adjust its size, set status and return the location.
+		 */
+		if(a->size >= size)
+		{
+			/* Set to allocated */
+			a->status = 1;
 
-RnKernelResult RN_KERNEL_API RnMemoryDeallocate(void * pBlock)
-{
-	return 0;
+			memset(mem + sizeof(alloc_t), 0, size);
+			rnMemoryUsed += size + sizeof(alloc_t);
+			return (char *)(mem + sizeof(alloc_t));
+		}
+		/* If it isn't allocated, but the size is not good, then
+		 * add its size and the sizeof alloc_t to the pointer and
+		 * continue;
+		 */
+		mem += a->size;
+		mem += sizeof(alloc_t);
+		mem += 4;
+	}
+
+	nalloc:;
+	if(rnLastAlloc + size + sizeof(alloc_t) >= rnHeapEnd)
+	{
+		return NULL;
+	}
+	alloc_t *alloc = (alloc_t *)rnLastAlloc;
+	alloc->status = 1;
+	alloc->size = size;
+
+	rnLastAlloc += size;
+	rnLastAlloc += sizeof(alloc_t);
+	rnLastAlloc += 4;
+
+	rnMemoryUsed += size + 4 + sizeof(alloc_t);
+	memset((char *)((uint32_t)alloc + sizeof(alloc_t)), 0, size);
+	return (char *)((uint32_t)alloc + sizeof(alloc_t));
 }

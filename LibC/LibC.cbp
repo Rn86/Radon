@@ -8,9 +8,10 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../bin/Debug/libLibC.so" prefix_auto="1" extension_auto="0" />
+				<Option output="../bin/Debug/C.a" prefix_auto="1" extension_auto="0" />
+				<Option working_dir="" />
 				<Option object_output="../obj/Debug/" />
-				<Option type="3" />
+				<Option type="2" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
@@ -33,11 +34,11 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="C:/Rn86/WorkSpace/CodeBlocks/Radon/LibC/include" />
+			<Add directory="../Kernel/include" />
+			<Add directory="include" />
 		</Compiler>
 		<Linker>
-			<Add library="libKernel" />
-			<Add directory="C:/Rn86/WorkSpace/CodeBlocks/Radon/bin/Debug" />
+			<Add option="-T linker.ld" />
 		</Linker>
 		<Unit filename="include/stdio.h" />
 		<Unit filename="include/stdlib.h" />

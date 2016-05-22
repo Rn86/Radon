@@ -4,7 +4,6 @@ div_t div(int numer, int denom)
 {
     div_t result;
     int q = 0;
-    int r = 0;
     while(denom*q < numer)
     {
         q++;
