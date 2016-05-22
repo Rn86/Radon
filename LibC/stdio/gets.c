@@ -6,7 +6,6 @@
 char * gets(char * str)
 {
     int32_t length = 0;
-    RnResult res = 0;
     for(;;)
     {
         RnSystemCallRead(str, &length);

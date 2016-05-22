@@ -46,7 +46,7 @@ RnResult RN_API RnKernelInitialize()
     RnInteruptServiceRoutineInitialize();
 	RnInteruptRequestInitialize();
 
-	RnMemoryInitialzie(&rnKernelEnd);
+	RnMemoryInitialize(&rnKernelEnd);
     RnPagingInitialize();
 
     RnTaskingInitialize();

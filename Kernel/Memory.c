@@ -25,7 +25,7 @@ uint32_t rnHeapEnd = 0;
 uint32_t rnHeapBegin = 0;
 uint32_t rnMemoryUsed = 0;
 
-RnResult RN_API RnMemoryInitialzie(uint32_t kernel_end)
+RnResult RN_API RnMemoryInitialize(uint32_t kernel_end)
 {
 	rnLastAlloc = kernel_end + 0x1000;
 	rnHeapBegin = rnLastAlloc;
