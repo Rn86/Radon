@@ -42,6 +42,7 @@
 			<Add option="-Wall" />
 			<Add directory="../Kernel" />
 			<Add directory="../Bootloader/include" />
+			<Add directory="../LibC/include" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
@@ -75,21 +76,27 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Keyboard.h" />
+		<Unit filename="Memory.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Memory.h" />
 		<Unit filename="Monitor.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Monitor.h" />
+		<Unit filename="Paging.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Registers.h" />
 		<Unit filename="SystemCall.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="SystemCall.h" />
-		<Unit filename="Task.c">
+		<Unit filename="Tasking.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Task.h" />
-		<Unit filename="Task.s" />
+		<Unit filename="Tasking.h" />
+		<Unit filename="Tasking.s" />
 		<Unit filename="Timer.c">
 			<Option compilerVar="CC" />
 		</Unit>

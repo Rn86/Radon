@@ -36,7 +36,7 @@
 			<Add directory="../LibC/include" />
 		</Compiler>
 		<Linker>
-			<Add library="../bin/Debug/libLibC.so" />
+			<Add library="../bin/Debug/libC.so" />
 		</Linker>
 		<Unit filename="Radon/Collection/RnList.c">
 			<Option compilerVar="CC" />

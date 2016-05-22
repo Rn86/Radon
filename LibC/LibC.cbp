@@ -44,6 +44,9 @@
 		<Unit filename="include/stdlib.h" />
 		<Unit filename="include/string.h" />
 		<Unit filename="include/sys/cdefs.h" />
+		<Unit filename="stdio/gets.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="stdio/printf.c">
 			<Option compilerVar="CC" />
 		</Unit>
