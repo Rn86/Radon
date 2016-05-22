@@ -9,7 +9,6 @@ static RnResult RN_API RnTaskInitialize(RnTask *task, void (*main)(), uint32_t f
 
 RnResult RN_API RnTaskingInitialize()
 {
-    // Get EFLAGS and CR3
     asm volatile("movl %%cr3, %%eax; movl %%eax, %0;":"=m"(rnMainTask.regs.cr3)::"%eax");
     asm volatile("pushfl; movl (%%esp), %%eax; movl %%eax, %0; popfl;":"=m"(rnMainTask.regs.eflags)::"%eax");
 
