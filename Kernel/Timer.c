@@ -36,7 +36,11 @@ static RnResult RN_API RnTimerSetFrequency(uint32_t hz)
 
 static RnResult RN_API RnTimerIRQHandler()
 {
+    //RnMonitorWrite("timer\n");
+
+    //
     RnInteruptRequestAcknowledge(0);
     //RnTaskingSwitchTask();
+    //RnInteruptRequestAcknowledge(0);
 	return 0;
 }

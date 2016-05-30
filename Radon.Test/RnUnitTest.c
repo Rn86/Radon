@@ -1,7 +1,7 @@
 #include <RnUnitTest.h>
 #include <RnKernel.h>
 
-RN_TEST_GROUP_DECLARE(GroupExample);
+//RN_TEST_GROUP_DECLARE(GroupExample);
 
 struct
 {
@@ -9,7 +9,7 @@ struct
     RnResult (RN_API * test_group)(RnUnitTestCode code, char * input, uint32_t * pCount, uint32_t inCount, char ** parTests);
 } rnUnitTestGroups[] =
 {
-    RN_TEST_GROUP(GroupExample),
+    //RN_TEST_GROUP(GroupExample),
 };
 
 RnResult RN_API RnUnitTestGetCount(uint32_t * pCount)

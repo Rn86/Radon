@@ -15,14 +15,11 @@ typedef struct RnTask_
     struct RnTask_ * next;
 } RnTask;
 
-RnResult RN_API RnTaskingInitialize();
+RnResult RN_API RnTaskingInitialize(void (RN_API * main)());
 
 RnResult RN_API RnTaskCreate(void (*main)(), RnTask * task);
 RnResult RN_API RnTaskingAdd(RnTask * task);
 
 void RN_API RnTaskingSwitchTask();
-
-// TODO: move to internal header
-void RN_API RnTaskingSwitchContext(RnTaskRegisters * old, RnTaskRegisters * new);
 
 #endif // RN_KERNEL_TASK_H_INCLUDED

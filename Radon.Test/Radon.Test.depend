@@ -1,17 +1,22 @@
 # depslib dependency file v1.0
-1463824515 source:c:\users\drado\desktop\rn86\radon\radon.test\radon.test.c
-	<RnKernel.h>
-	<RnUnitTest.h>
-	<stdio.h>
-
-1463820256 c:\users\drado\desktop\rn86\radon\kernel\include\rnkernel.h
+1464581160 source:c:\users\drado\desktop\rn86\radon\radon.test\radon.test.c
 	<stdint.h>
+	<stdio.h>
+	<RnKernel.h>
+	<RnSystemCall.h>
+	"../Kernel/Tasking.h"
+	"../Kernel/Monitor.h"
 
-1463828442 source:c:\users\drado\desktop\rn86\radon\radon.test\rnunittest.c
+1463949725 c:\users\drado\desktop\rn86\radon\kernel\include\rnkernel.h
+	<stddef.h>
+	<stdint.h>
+	<stdbool.h>
+
+1464569996 source:c:\users\drado\desktop\rn86\radon\radon.test\rnunittest.c
 	<RnUnitTest.h>
 	<RnKernel.h>
 
-1463828745 c:\users\drado\desktop\rn86\radon\radon.test\rnunittest.h
+1464569919 c:\users\drado\desktop\rn86\radon\radon.test\rnunittest.h
 	<RnKernel.h>
 	<stddef.h>
 	<stdint.h>
@@ -19,11 +24,20 @@
 	<string.h>
 	<stdio.h>
 
-1459285115 c:\users\drado\desktop\rn86\radon\libc\include\stdio.h
+1463953856 c:\users\drado\desktop\rn86\radon\libc\include\stdio.h
 
-1459285092 c:\users\drado\desktop\rn86\radon\libc\include\string.h
+1463938006 c:\users\drado\desktop\rn86\radon\libc\include\string.h
 	<stddef.h>
 
-1463828071 source:c:\users\drado\desktop\rn86\radon\radon.test\testexample.c
+1464569965 source:c:\users\drado\desktop\rn86\radon\radon.test\testexample.c
 	<RnUnitTest.h>
+
+1463960407 c:\users\drado\desktop\rn86\radon\kernel\include\rnsystemcall.h
+	<RnKernel.h>
+
+1464575843 c:\users\drado\desktop\rn86\radon\kernel\tasking.h
+	<RnKernel.h>
+
+1463820365 c:\users\drado\desktop\rn86\radon\kernel\monitor.h
+	<RnKernel.h>
 

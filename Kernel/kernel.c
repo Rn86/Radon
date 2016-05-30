@@ -35,6 +35,13 @@ static char rnBanner[] =
 "\n"
 };
 
+RnResult RN_API RnKernelMain();
+
+void RN_API RnKernelMainProxy()
+{
+    RnKernelMain();
+}
+
 RnResult RN_API RnKernelInitialize()
 {
     RnMonitorInitialize();
@@ -49,10 +56,10 @@ RnResult RN_API RnKernelInitialize()
 	RnMemoryInitialize(&rnKernelEnd);
     RnPagingInitialize();
 
-    RnTaskingInitialize();
-
     RnTimerInitialize();
     RnKeyboardInitialize();
+
+    RnTaskingInitialize(&RnKernelMainProxy);
 
 	return 0;
 }
@@ -62,11 +69,9 @@ RnResult RN_API RnKernelCleanup()
 	return 0;
 }
 
-RnResult RN_API RnKernelMain();
-
 void kernel_main()
 {
 	RnKernelInitialize();
-	RnKernelMain();
-	RnKernelCleanup();
+	//RnKernelMain();
+	//RnKernelCleanup();
 }

@@ -60,8 +60,7 @@ RnResult RN_API RnTestGroup##name(RnUnitTestCode code, char * input, uint32_t * 
         error = 0;\
     }\
     test_name = #name;\
-    if (code =
-        = rnutcCount) count ++;\
+    if (code == rnutcCount) count ++;\
     if (code == rnutcList)\
     {\
         memcpy(&arTests[outCount], test_name, sizeof(#name));\

@@ -46,4 +46,5 @@ RnTaskingSwitchContext:
     mov 32(%eax), %eax
     xchg (%esp), %eax
     mov (%eax), %eax
-    ret
+    sti
+    iret

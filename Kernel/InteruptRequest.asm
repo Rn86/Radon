@@ -62,5 +62,6 @@ RnInteruptRequestInternal:
 	pop ecx
 
     add esp, 12
+
     sti
     iret

@@ -22,7 +22,6 @@ static void Task1()
             gets(buffer);
             task1.param = (void*)buffer;
         }
-        RnTaskingSwitchTask();
     }
 }
 
@@ -35,7 +34,6 @@ static void Task2()
             printf("Task2: %s\n", (char*)task1.param);
             task1.param = NULL;
         }
-        RnTaskingSwitchTask();
     }
 }
 
@@ -47,10 +45,7 @@ RnResult RN_API RnKernelMain()
     RnTaskingAdd(&task1);
     RnTaskingAdd(&task2);
 
-	while (1)
-    {
-        RnTaskingSwitchTask();
-    }
+	while (1) {}
 
 	return 0;
 }

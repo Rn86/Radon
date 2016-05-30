@@ -1,6 +1,9 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
+
+#include <RnSystemCall.h>
 
 #include <Memory.h>
 
@@ -87,5 +90,6 @@ void * malloc(size_t size)
 
 	rnMemoryUsed += size + 4 + sizeof(RnAlloc);
 	memset((char *)((uint32_t)alloc + sizeof(RnAlloc)), 0, size);
+
 	return (char *)((uint32_t)alloc + sizeof(RnAlloc));
 }
